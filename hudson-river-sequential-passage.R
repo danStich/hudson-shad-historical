@@ -122,7 +122,8 @@ sfStop()
 # Results ----
 # . File save ----
 # 'result' is a list of lists. Save this:
-save(result, file = "results/hudson_dam_passage.rda")
+# save(result, file = "results/hudson_dam_passage.rda")
+load("results/hudson_dam_passage.rda")
 
 # . Extract results dataframes by string and rbind them ----
 res <- lapply(result, function(x) x[[c('res')]])
@@ -162,10 +163,12 @@ Figure5 <- ggplot(plotter, aes(x = dam, y = fit, group = habitat_scenario,
                                color = habitat_scenario, fill = habitat_scenario)) +
   geom_line() +
   geom_ribbon(aes(xmax = dam, ymin = lwr, ymax = upr, color = NULL), alpha = .5) +
-  xlab("Dam removed") +
+  xlab("Dam with fish passage") +
   ylab("Millions of spawning adults") +
   labs(color = "Estuary habitat", fill = "Estuary habitat") +
   scale_y_continuous(breaks = seq(0, 7e6, 1e6), labels = seq(0, 7, 1)) +
+  scale_color_manual(values = c("gray", "black")) +
+  scale_fill_manual(values = c("gray", "black")) +
   theme_bw() +
   theme(
     axis.title.x = element_text(vjust = -1, size = 12),

@@ -118,7 +118,8 @@ sfStop()
 # Results ----
 # . File save ----
 # 'result' is a list of lists. Save this:
-save(result, file = "results/hudson_dam_removals.rda")
+# save(result, file = "results/hudson_dam_removals.rda")
+load("results/hudson_dam_removals.rda")
 
 # . Extract results dataframes by string and rbind them ----
 res <- lapply(result, function(x) x[[c('res')]])
@@ -161,8 +162,8 @@ Figure4 <- ggplot(plotter, aes(x = dam, y = fit, group = habitat_scenario,
   xlab("Dam removed") +
   ylab("Millions of spawning adults") +
   labs(color = "Estuary habitat", fill = "Estuary habitat") +
-  # scale_color_manual(values = c("blue", "red")) +
-  # scale_fill_manual(values = c("blue", "red")) +  
+  scale_color_manual(values = c("gray", "black")) +
+  scale_fill_manual(values = c("gray", "black")) + 
   scale_y_continuous(breaks = seq(0, 7e6, 1e6), labels = seq(0, 7, 1)) +
   theme_bw() +
   theme(
